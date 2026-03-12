@@ -9,3 +9,7 @@ Tools I will learn:
 - GitHub Actions
 - Terraform
 - AWS
+
+## Day 2 Progress
+
+Learning Git branching and merge workflow.
