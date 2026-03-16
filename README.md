@@ -1,24 +1,19 @@
 # DevOps 30 Day Project
 
-This repository documents my DevOps learning journey.
+This repository demonstrates a complete DevOps workflow.
 
-Tools I will learn:
+The project will include:
 
-- Git
-- GitHub
-- GitHub Actions
-- Terraform
-- AWS
+• GitHub version control
+• GitHub Actions CI/CD pipelines
+• Infrastructure as Code using Terraform
+• Automated deployment to AWS
 
-## Day 2 Progress
+Project Structure
 
-Learning Git branching and merge workflow.
-
-## Day 3 Progress
-
-Project structure:
-
-app/ – application code  
-tests/ – automated tests  
-terraform/ – infrastructure code  
-.github/workflows – CI/CD pipelines
+app/ → application code  
+tests/ → automated tests  
+infrastructure/ → Terraform code  
+scripts/ → automation scripts  
+config/ → environment configuration  
+docs/ → architecture and documentation
