@@ -7,7 +7,6 @@ on:
     branches: [master]
 
 jobs:
-
   test:
     runs-on: ubuntu-latest
 
@@ -30,12 +29,17 @@ jobs:
           PYTHONPATH: .
         run: python -m pytest
 
-      - name: Save files as artifact
+      - name: Create output file
+        run: echo "Hello from test job" > output.txt
+
+      - name: Show files before upload
+        run: ls -R
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: project-files
-          path: C:\Users\gshek\Desktop\AWS prctice\DevopsSampleProject\.github\workflows
-
+          path: output.txt
 
   build:
     runs-on: ubuntu-latest
@@ -47,8 +51,8 @@ jobs:
         with:
           name: project-files
 
-      - name: Verify files
+      - name: Show files after download
         run: ls -R
 
-      - name: Build step
-        run: echo "Build using artifacts successful!"
+      - name: Read file
+        run: cat output.txt
