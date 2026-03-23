@@ -2,9 +2,9 @@ name: Python CI Pipeline
 
 on:
   push:
-    branches: [master]
+    branches: [main, master]
   pull_request:
-    branches: [master]
+    branches: [main, master]
 
 env:
   APP_ENV: dev
@@ -28,7 +28,7 @@ jobs:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: |
-           ${{ runner.os }}-pip-
+            ${{ runner.os }}-pip-
 
       - name: Install dependencies
         run: |
@@ -36,7 +36,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run linter
-        run: flake8 app tests
+        run: python -m flake8 app tests
 
   test:
     runs-on: ubuntu-latest
@@ -50,16 +50,16 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Show environment
-        run: echo "Running in $APP_ENV"
-
       - name: Cache pip dependencies
         uses: actions/cache@v4
         with:
-         path: ~/.cache/pip
-         key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-         restore-keys: |
-          ${{ runner.os }}-pip-
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Show environment
+        run: echo "Running in $APP_ENV"
 
       - name: Install dependencies
         run: |
@@ -78,9 +78,6 @@ jobs:
 
       - name: Create output file
         run: echo "Hello from test job" > output.txt
-
-      - name: Show files before upload
-        run: ls -R
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -104,3 +101,6 @@ jobs:
 
       - name: Read file
         run: cat downloaded-artifacts/output.txt
+
+      - name: Build step
+        run: echo "Build completed successfully"
