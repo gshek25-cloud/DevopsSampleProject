@@ -4,10 +4,12 @@ on:
   push:
     branches: [master]
     paths:
+      - 'infrastructure/**'
       - '.github/workflows/terraform-validate.yml'
   pull_request:
     branches: [master]
     paths:
+     - 'infrastructure/**'
      - '.github/workflows/terraform-validate.yml'
 permissions:
   id-token: write
