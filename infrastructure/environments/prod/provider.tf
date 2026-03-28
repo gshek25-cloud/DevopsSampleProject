@@ -5,7 +5,6 @@ terraform {
       version = "~> 5.0"
     }
   }
-
   required_version = ">= 1.0"
   backend "s3" {
     bucket = "aish-prod-bucket-101"
