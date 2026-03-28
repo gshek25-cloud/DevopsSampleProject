@@ -1,0 +1,49 @@
+name: Terraform Validate
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'infrastructure/**'
+      - '.github/workflows/terraform-validate.yml'
+  pull_request:
+    branches: [master]
+    paths:
+     - 'infrastructure/**'
+     - '.github/workflows/terraform-validate.yml'
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform-validate:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: infrastructure/environments/dev
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init
+        run: terraform init -reconfigure
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -input=false
