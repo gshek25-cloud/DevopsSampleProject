@@ -19,7 +19,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: infrastructure/environments/dev
+        working-directory: infrastructure/environments/test
 
     steps:
       - name: Checkout code
