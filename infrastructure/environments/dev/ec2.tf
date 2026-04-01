@@ -1,6 +1,6 @@
 resource "aws_instance" "sample_app" {
   ami                    = "ami-0c02fb55956c7d316"
-  instance_type          = "t2.micro"
+  instance_type          = "t3.micro"
   subnet_id              = "subnet-0b84057f32a74cf22"
   vpc_security_group_ids = ["sg-0aef17d781d1ca0ea"]
   iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name
