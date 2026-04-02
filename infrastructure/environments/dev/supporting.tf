@@ -54,8 +54,8 @@ resource "aws_iam_policy" "ecr_access_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Effect = "Allow"
-        Action = "ecr:*"
+        Effect   = "Allow"
+        Action   = "ecr:*"
         Resource = "*"
       }
     ]
